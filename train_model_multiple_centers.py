@@ -1,6 +1,6 @@
 import models as m
 from params import *
-import automatic_dataset_loader as adl
+import data_load as adl
 import matplotlib.pyplot as plt
 import pickle
 from tensorflow.keras.callbacks import EarlyStopping, LearningRateScheduler, ModelCheckpoint
