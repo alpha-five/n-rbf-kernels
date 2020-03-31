@@ -6,10 +6,19 @@ import pickle
 import numpy as np
 from tensorflow.keras.callbacks import EarlyStopping, LearningRateScheduler, ModelCheckpoint
 from sklearn.metrics import silhouette_score as sil
+import sys
 
 
 filepath = "model10.h5"
 results = []
+
+
+# Command Line Arguments
+
+if len(sys.argv) > 2:
+    feature_extractor = str(sys.argv[1]).upper()
+    dataset = str(sys.argv[2]).upper()
+
 
 # Dataset Setup
 
@@ -21,6 +30,8 @@ else:
   n_classes = 100
 
 x_train_pct, y_train_pct = m.sample_train(x_train, y_train, train_pct)
+
+
 m.print_params(feature_extractor, embedding_dim, n_centers_per_class, n_classes, 
                 lr, sigma, batch_size, epochs, dataset, input_shape, patience)
 
