@@ -5,9 +5,18 @@ import matplotlib.pyplot as plt
 import pickle
 from tensorflow.keras.callbacks import EarlyStopping, LearningRateScheduler, ModelCheckpoint
 from sklearn.metrics import silhouette_score as sil
+import sys
 
 filepath = "model100.h5"
 results = []
+
+
+# Command Line Arguments
+
+if len(sys.argv) > 2:
+    feature_extractor = str(sys.argv[1]).upper()
+    dataset = str(sys.argv[2]).upper()
+
 
 # Models Weights Record
 
