@@ -3,14 +3,28 @@ import models as m
 import data_load as adl
 import matplotlib.pyplot as plt
 import pickle
+import sys
 
 filepath       = "model10.h5"
 history        = []
 
 
+# Command Line Arguments
+
+if len(sys.argv) > 2:
+    feature_extractor = str(sys.argv[1]).upper()
+    dataset = str(sys.argv[2]).upper()
+
+
 # Dataset Setup
 
-x_train, x_test, y_train, y_test = adl.load_cifar10()
+if dataset == "CIFAR-10":
+    x_train, x_test, y_train, y_test = adl.load_cifar10()
+    n_classes = 10
+else:
+    x_train, x_test, y_train, y_test = adl.load_cifar100()
+    n_classes = 100
+
 x_train_pct, y_train_pct = m.sample_train(x_train, y_train, train_pct)
 
 
