@@ -44,11 +44,7 @@ class RBF(Layer):
     def call(self, x):
 
         keys2 = tf.reshape(self.keys, (-1, self.embedding_dim))
-
-        if (self.kernel_type == "gauss"):
-          K= self.kernel_gauss(keys2, x)
-        else:
-          K= self.kernel_inverse(keys2, x)
+        K = self.kernel(keys2, x)
 
         inner_logits = tf.transpose(tf.reduce_sum(tf.reshape(K, (self.n_keys_per_class, self.num_classes, -1)), axis=0))
         sum_inner_logits = tf.reduce_sum(inner_logits, axis=1)
@@ -62,6 +58,12 @@ class RBF(Layer):
         self.set_weights([keys])
     
     # Kernel Functions
+    
+    def kernel(self, keys, x):
+        return {
+            'gauss': self.kernel_gauss(keys2, x),
+            'inverse': self.kernel_inverse(keys2, x)
+        }.get(self.kernel_type, self.kernel_inverse(keys2, x))
 
     def sq_distance(self, A, B):
         ''' Square Distance.
