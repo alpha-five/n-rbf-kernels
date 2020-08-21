@@ -163,7 +163,7 @@ for i in range(n_trials):
                   "vk_kmeans": highest_vk_1,
                   "vk_kmedoids": highest_vk_2,
                   "vk_no_init": highest_vk_no_init,
-                  "gauss_means": highest_gauss_kmeans
+                  "gauss_means": highest_gauss_kmeans,
                   "gauss": highest_gauss,
                   "k_means": kmeans_acc,
                   "k_medoids": kmedoids_acc})
