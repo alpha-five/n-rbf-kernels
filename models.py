@@ -48,7 +48,7 @@ class RBF(Layer):
         if (self.kernel_type == "gauss"):
           K= self.kernel_gauss(keys2, x)
         else:
-          K= self.kernel(keys2, x)
+          K= self.kernel_inverse(keys2, x)
 
         inner_logits = tf.transpose(tf.reduce_sum(tf.reshape(K, (self.n_keys_per_class, self.num_classes, -1)), axis=0))
         sum_inner_logits = tf.reduce_sum(inner_logits, axis=1)
@@ -78,7 +78,7 @@ class RBF(Layer):
         ''' Inverse Kernel.
         '''
         d = self.sq_distance(A,B)
-        o = tf.reciprocal(d+1)
+        o = tf.math.reciprocal(d+1)
         return o
     
     def kernel_cos(self, A,B):
