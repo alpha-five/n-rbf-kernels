@@ -61,9 +61,9 @@ class RBF(Layer):
     
     def kernel(self, keys, x):
         return {
-            'gauss': self.kernel_gauss(keys2, x),
-            'inverse': self.kernel_inverse(keys2, x)
-        }.get(self.kernel_type, self.kernel_inverse(keys2, x))
+            'gauss': self.kernel_gauss(keys, x),
+            'inverse': self.kernel_inverse(keys, x)
+        }.get(self.kernel_type, self.kernel_inverse(keys, x))
 
     def sq_distance(self, A, B):
         ''' Square Distance.
