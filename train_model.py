@@ -91,7 +91,7 @@ for i in range(n_trials):
   '''
   softmax_model.load_weights(filepath)
   init_keys = m.get_initial_weights(embeddings, x_train_pct, y_train_pct, n_centers_per_class, n_classes, 
-                                    mbedding_dim, init_method= "KMEDOIDS")
+                                    embedding_dim, init_method= "KMEDOIDS")
   rbf_model.layers[-1].set_keys(init_keys)
   kmedoids_acc = rbf_model.evaluate(x_test, y_test)
 
