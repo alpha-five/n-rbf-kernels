@@ -2,6 +2,7 @@ from params import *
 import models as m
 import data_load as adl
 import matplotlib.pyplot as plt
+import numpy as np
 import pickle
 import sys
 
